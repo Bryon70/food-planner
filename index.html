@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Planner — Plan meals, manage recipes, shop smarter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+  <main class="landing">
+    <section class="landing__hero">
+      <p class="eyebrow">Food Planner</p>
+      <h1>Plan your week. Cook with confidence.</h1>
+      <p class="landing__subtitle">
+        Organize recipes, schedule meals, and generate shopping lists —
+        all in one place.
+      </p>
+      <div class="landing__actions">
+        <a href="register.html" class="btn btn--primary">Create Account</a>
+        <a href="login.html" class="btn btn--ghost">Sign In</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Supabase SDK must load first -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="static/js/supabaseClient.js"></script>
+  <script>
+    // If already logged in, skip the landing page entirely.
+    (async () => {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (session) {
+        window.location.href = 'dashboard.html';
+      }
+    })();
+  </script>
+</body>
+</html>

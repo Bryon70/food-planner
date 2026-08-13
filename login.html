@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Food Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <p class="eyebrow">Food Planner</p>
+      <h1>Welcome back</h1>
+      <p class="auth-card__subtitle">Sign in to your account.</p>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required />
+          <span class="field__error"></span>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required />
+          <span class="field__error"></span>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block">Sign In</button>
+      </form>
+
+      <p class="auth-card__footer">
+        Don't have an account? <a href="register.html">Create one</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Load order matters: SDK → client → notifications → auth -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="static/js/supabaseClient.js"></script>
+  <script src="static/js/notifications.js"></script>
+  <script src="static/js/auth.js"></script>
+  <script>
+    // If already logged in, don't show the login form at all.
+    redirectIfAuthed();
+
+    document
+      .getElementById('login-form')
+      .addEventListener('submit', handleLoginSubmit);
+  </script>
+</body>
+</html>

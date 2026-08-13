@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping List — Food Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+    <aside class="sidenav">
+      <p class="sidenav__brand">Food Planner</p>
+      <nav>
+        <a href="dashboard.html" class="sidenav__link">Dashboard</a>
+        <a href="planner.html" class="sidenav__link">Meal Planner</a>
+        <a href="recipes.html" class="sidenav__link">Recipes</a>
+        <a href="favorites.html" class="sidenav__link">Favorites</a>
+        <a href="shopping-list.html" class="sidenav__link">Shopping List</a>
+        <a href="profile.html" class="sidenav__link">Profile</a>
+      </nav>
+      <div class="sidenav__footer">
+        <p data-user-name></p>
+        <a href="#" data-logout>Logout</a>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-main__header">
+        <h1>Shopping List</h1>
+        <div class="header-actions">
+          <button class="btn btn--ghost" id="generate-from-recipe-btn">Generate from Recipe</button>
+          <button class="btn btn--primary" id="add-item-btn">+ Add Item</button>
+        </div>
+      </header>
+
+      <section class="toolbar">
+        <p id="progress-label"></p>
+        <label class="checkbox-label">
+          <input type="checkbox" id="hide-purchased" />
+          Hide purchased
+        </label>
+      </section>
+
+      <section id="shopping-list-container">
+        <!-- category groups injected by shopping-list.js -->
+      </section>
+    </main>
+  </div>
+
+  <!-- Add/edit item modal -->
+  <div class="modal-overlay" id="item-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <h2 id="item-modal-title">Add Item</h2>
+      <form id="item-form" novalidate>
+        <input type="hidden" name="id" />
+
+        <div class="field">
+          <label for="item-name">Item name</label>
+          <input type="text" id="item-name" name="name" required />
+          <span class="field__error"></span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="item-qty">Quantity</label>
+            <input type="number" id="item-qty" name="quantity" min="0" step="0.01" value="1" />
+          </div>
+          <div class="field">
+            <label for="item-unit">Unit</label>
+            <input type="text" id="item-unit" name="unit" placeholder="cups, lbs, pcs…" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="item-category">Category</label>
+          <select id="item-category" name="category">
+            <option value="produce">Produce</option>
+            <option value="dairy">Dairy</option>
+            <option value="meat">Meat</option>
+            <option value="seafood">Seafood</option>
+            <option value="bakery">Bakery</option>
+            <option value="pantry">Pantry</option>
+            <option value="frozen">Frozen</option>
+            <option value="beverages">Beverages</option>
+            <option value="spices">Spices</option>
+            <option value="other" selected>Other</option>
+          </select>
+        </div>
+
+        <div class="modal-card__actions">
+          <button type="button" class="btn btn--ghost" id="item-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn--primary">Save Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Recipe picker for "generate from recipe" -->
+  <div class="modal-overlay" id="recipe-picker-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <h2>Generate from Recipe</h2>
+      <input type="search" id="recipe-picker-search" placeholder="Search your recipes…" />
+      <div id="recipe-picker-results" class="picker-results"></div>
+      <div class="modal-card__actions">
+        <button type="button" class="btn btn--ghost" id="recipe-picker-cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="static/js/supabaseClient.js"></script>
+  <script src="static/js/notifications.js"></script>
+  <script src="static/js/auth.js"></script>
+  <script src="static/js/shopping-list.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Food Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+    <aside class="sidenav">
+      <p class="sidenav__brand">Food Planner</p>
+      <nav>
+        <a href="dashboard.html" class="sidenav__link">Dashboard</a>
+        <a href="planner.html" class="sidenav__link">Meal Planner</a>
+        <a href="recipes.html" class="sidenav__link">Recipes</a>
+        <a href="favorites.html" class="sidenav__link">Favorites</a>
+        <a href="shopping-list.html" class="sidenav__link">Shopping List</a>
+        <a href="profile.html" class="sidenav__link">Profile</a>
+      </nav>
+      <div class="sidenav__footer">
+        <p data-user-name></p>
+        <a href="#" data-logout>Logout</a>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-main__header">
+        <h1>Welcome back, <span data-user-name></span></h1>
+      </header>
+
+      <section class="stat-grid" id="stat-grid">
+        <!-- stat cards get injected here by dashboard.js -->
+      </section>
+
+      <section class="dashboard-columns">
+        <div class="panel">
+          <h2>Today's Meals</h2>
+          <div id="todays-meals" class="meal-list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Upcoming Meals</h2>
+          <div id="upcoming-meals" class="meal-list"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Recipes by Category</h2>
+        <canvas id="category-chart" height="120"></canvas>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="static/js/supabaseClient.js"></script>
+  <script src="static/js/notifications.js"></script>
+  <script src="static/js/auth.js"></script>
+  <script src="static/js/dashboard.js"></script>
+</body>
+</html>
