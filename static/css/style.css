@@ -835,3 +835,119 @@ img { max-width: 100%; display: block; }
   background: rgba(255, 255, 255, 0.1);
   border-color: #fff;
 }
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+/* ---- Tablet: tighten spacing, shrink sidenav slightly ---- */
+@media (max-width: 1024px) {
+  .app-main {
+    padding: var(--space-5);
+  }
+
+  .dashboard-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .sidenav {
+    width: 200px;
+  }
+}
+
+/* ---- Mobile: sidenav becomes a top bar, content stacks ---- */
+@media (max-width: 720px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .sidenav {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding: var(--space-4);
+  }
+
+  .sidenav nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .sidenav__link {
+    padding: var(--space-2) var(--space-3);
+    font-size: 13px;
+  }
+
+  .sidenav__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: none;
+    margin-top: var(--space-3);
+    padding-top: 0;
+  }
+
+  .app-main {
+    padding: var(--space-4);
+  }
+
+  .app-main__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-card {
+    padding: var(--space-5);
+  }
+
+  .landing__hero h1 {
+    font-size: 30px;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredient-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "name name"
+      "qty unit"
+      "remove remove";
+  }
+
+  .toast-container {
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-3);
+  }
+
+  .toast {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .modal-card {
+    padding: var(--space-5);
+  }
+}
+
+/* ---- Small phones: tighter stat grid ---- */
+@media (max-width: 420px) {
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .week-nav {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}
